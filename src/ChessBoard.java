@@ -15,13 +15,15 @@ public class ChessBoard {
 		boardWidth=n;
 		board = new boolean [boardWidth][boardWidth];
 	}
-	
+	public int getBoardWidth() {
+		return boardWidth;
+	}
 	public boolean getPosition(int i, int j) {
 		return board[i][j];
 	}
 	
-	public boolean setPosition(boolean n, int i, int j) {
-		board[i][j] = n;
+	public boolean setPosition(boolean q, int x, int y) {
+		board[y][x] = q;
 		return true;
 	}
 	
