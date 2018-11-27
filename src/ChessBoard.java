@@ -18,18 +18,19 @@ public class ChessBoard {
 	public int getBoardWidth() {
 		return boardWidth;
 	}
-	public boolean getPosition(int i, int j) {
-		return board[i][j];
+	public boolean getPosition(int xCoord, int yCoord) {
+		return board[yCoord][xCoord];
 	}
 	
-	public boolean setPosition(boolean q, int x, int y) {
-		board[y][x] = q;
+	public boolean setPosition(boolean q, int xCoord, int yCoord) {
+		System.out.println("Position set");
+		board[yCoord][xCoord]= q;
 		return true;
 	}
 	
 	public void displayBoard() {
 		for(int i = 0;i<board.length;i++) {
-			for(int j = 0;j<board[0].length;j++) {
+			for(int j = 0;j<board[i].length;j++) {
 				if(board[i][j]) {
 					System.out.print(" Q ");
 				}
@@ -40,5 +41,6 @@ public class ChessBoard {
 			}
 			System.out.println();
 		}
+		System.out.println();
 	}
 }
