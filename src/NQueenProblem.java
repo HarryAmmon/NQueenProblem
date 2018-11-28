@@ -38,7 +38,7 @@ public class NQueenProblem {
 				return false;
 			}
 		}
-		
+	
 		// Check if another queen is on the same diagonal (upper right)
 		for(int j = xCoord, k = yCoord; j<=n.getBoardWidth() && k>0; j++, k--) {
 			// System.out.println("Lower upper right is running");
