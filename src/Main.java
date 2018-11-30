@@ -1,11 +1,47 @@
 import java.util.Random;
 
 public class Main {
-	static final int boardSize = 8;
-
+	// Defines the board size, can be any value lower than 27
+	static final int boardSize = 15;
+	// Array of length 2 where userCoord[0] is x coordinate and userCoords[1] is y coordinate
+	static int[] userCoord = new int[2];
+	
 	public static void main(String[] args) {
-		ChessBoard boards[] = new ChessBoard[5];
-		NQueenProblem problems[] = new NQueenProblem[5];		
+		ChessBoard board = new ChessBoard(boardSize);
+		NQueenProblem problem = new NQueenProblem(boardSize);
+		System.out.printf("***** %d Queen Problem *****%n", board.getBoardWidth());
+		System.out.printf("Enter the x coordinate of the first queen: %n");
+		// Get coordinate for x-axis
+		userCoord[0] = getUserInput();
+		System.out.printf("Enter the y coordinate of the first queen: %n");
+		// Get coordinate for y-axis
+		userCoord[1]= getUserInput();
+		board.setPosition(true, userCoord[0], userCoord[1]);
+		long startTime = System.currentTimeMillis();
+		problem.solveNQueen(board, 0, userCoord[0]);
+		long endTime = System.currentTimeMillis();
+		board.display();
+		long duration = endTime - startTime;
+		System.out.println("Solution found in "+ duration +"m/s");
+	}
+	
+	/*public static void main(String[] args) {
+		ChessBoard board = new ChessBoard(boardSize);
+		NQueenProblem problem = new NQueenProblem(boardSize);
+		System.out.printf("***** %d Queen Problem *****%n", board.getBoardWidth());
+		System.out.printf("Enter the x coordinate of the first queen: %n");
+		// Get coordinate for x-axis
+		userCoord[0] = getUserInput();
+		System.out.printf("Enter the y coordinate of the first queen: %n");
+		// Get coordinate for y-axis
+		userCoord[1]= getUserInput();
+		board.setPosition(true, userCoord[0], userCoord[1]);
+		board.display();
+		
+	}*/
+	/*public static void main(String[] args) {
+		ChessBoard boards[] = new ChessBoard[1];
+		NQueenProblem problems[] = new NQueenProblem[1];		
 		int xCoord;
 		int yCoord;
 
@@ -33,7 +69,7 @@ public class Main {
 		}
 		
 
-	}
+	}*/
 
 	/**
 	 * Checks that the number input by the user is valid
@@ -57,15 +93,15 @@ public class Main {
 	private static void addNQueens(ChessBoard board, NQueenProblem problem,int n) {
 		Random rand = new Random();
 		int added = 0;
-		int xCoord = rand.nextInt(7)+0;
-		int yCoord = rand.nextInt(7)+0;
+		int xCoord = rand.nextInt(boardSize-1)+0;
+		int yCoord = rand.nextInt(boardSize-1)+0;
 		while (added < n) {
 			if (problem.isQueenSafe(board, xCoord, yCoord)) {
 				board.setPosition(true, xCoord, yCoord);
 				added++;
 			} else {
-				xCoord = rand.nextInt(7)+0;
-				yCoord = rand.nextInt(7)+0;
+				xCoord = rand.nextInt(boardSize-1)+0;
+				yCoord = rand.nextInt(boardSize-1)+0;
 			}
 			
 		}

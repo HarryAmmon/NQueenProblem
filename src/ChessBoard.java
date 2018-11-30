@@ -28,7 +28,7 @@ public class ChessBoard {
 		return true;
 	}
 	
-	public void displayBoard() {
+	public void display() {
 		for(int i = 0;i<board.length;i++) {
 			for(int j = 0;j<board[i].length;j++) {
 				if(board[i][j]) {
