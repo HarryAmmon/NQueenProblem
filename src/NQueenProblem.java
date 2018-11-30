@@ -40,7 +40,7 @@ public class NQueenProblem {
 		}
 	
 		// Check if another queen is on the same diagonal (upper right)
-		for(int j = xCoord, k = yCoord; j<=n.getBoardWidth() && k>0; j++, k--) {
+		for(int j = xCoord, k = yCoord; j<n.getBoardWidth() && k>0; j++, k--) {
 			// System.out.println("Lower upper right is running");
 			if(n.getPosition(j, k)) {
 				System.out.println("Same upper right diagonal");
@@ -49,7 +49,7 @@ public class NQueenProblem {
 		}
 		
 		// Check if another queen in on the same diagonal (lower right)
-		for(int j = xCoord, k = yCoord; j<=n.getBoardWidth() && k<=n.getBoardWidth(); j++,k++) {
+		for(int j = xCoord, k = yCoord; j<n.getBoardWidth() && k<n.getBoardWidth(); j++,k++) {
 			if(n.getPosition(j, k)) {
 				System.out.println("Same lower right diagonal");
 				return false;
