@@ -1,6 +1,6 @@
 
 public class ChessBoard {
-	/*
+	/**
 	 * False in matrix means blank space on board
 	 * True in matrix means queen on board
 	 */
@@ -15,19 +15,36 @@ public class ChessBoard {
 		boardWidth=n;
 		board = new boolean [boardWidth][boardWidth];
 	}
+	/**
+	 * 
+	 * @return boardWidth
+	 */
 	public int getBoardWidth() {
 		return boardWidth;
 	}
+	/**
+	 * 
+	 * @param xCoord
+	 * @param yCoord
+	 * @return true if queen is in position
+	 */
 	public boolean getPosition(int xCoord, int yCoord) {
 		return board[yCoord][xCoord];
 	}
-	
+	/**
+	 * 
+	 * @param true for a queen, false for no queen
+	 * @param xCoord
+	 * @param yCoord
+	 * @return true once position has been set
+	 */
 	public boolean setPosition(boolean q, int xCoord, int yCoord) {
-		System.out.println("Position set");
 		board[yCoord][xCoord]= q;
 		return true;
 	}
-	
+	/**
+	 * Will print the whole board
+	 */
 	public void display() {
 		for(int i = 0;i<board.length;i++) {
 			for(int j = 0;j<board[i].length;j++) {
