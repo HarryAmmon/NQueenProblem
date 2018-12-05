@@ -18,6 +18,7 @@ public class Main {
 		
 		// Get user coordinates
 		System.out.printf("***** %d Queen Problem *****%n", board.getBoardWidth());
+		board.display();
 		// Get coordinate for x-axis
 		System.out.printf("Enter the x coordinate of the first queen: %n");
 		userCoord[0] = getUserInput();
@@ -28,8 +29,11 @@ public class Main {
 		// Start timer
 		long startTime = System.currentTimeMillis();
 		board.setPosition(true, userCoord[0], userCoord[1]);
+		System.out.println("This is the position you have chosen");
+		board.display();
 		// If a solution can be found, display the solution
 		if(problem.solveNQueen(board, 0, userCoord[0])) {
+			System.out.println("Solution found");
 			board.display();
 		}
 		else {
