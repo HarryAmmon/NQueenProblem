@@ -1,6 +1,11 @@
-import java.util.Random;
-
 public class Main {
+	// TODO make it obvious where the user entered their queen
+	//		print out all the possible solutions for the NQueenProblem
+	//		Improve the display of the chessboard
+	
+	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_RESET = "\u001B[0m";
+	
 	// Defines the board size, can be any value lower than 27
 	static final int boardSize = 8;
 	// Array of length 2 where userCoord[0] is x coordinate and userCoords[1] is y coordinate

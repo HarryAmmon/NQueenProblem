@@ -49,7 +49,7 @@ public class ChessBoard {
 		for(int i = 0;i<board.length;i++) {
 			for(int j = 0;j<board[i].length;j++) {
 				if(board[i][j]) {
-					System.out.print(" Q ");
+					System.out.print(Main.ANSI_RED+" Q "+Main.ANSI_RESET);
 				}
 				else {
 					System.out.print(" - ");
