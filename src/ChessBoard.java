@@ -51,13 +51,13 @@ public class ChessBoard {
 	 * Will print the whole board
 	 */
 	public void display() {
-		System.out.print(" ");
+		System.out.print("  ");
 		for (int k = 0; k < board.length; k++) {
 			System.out.print("  "+k);
 		}
 		System.out.println();
 		for (int i = 0; i < board.length; i++) {
-			System.out.print(" "+i);
+			System.out.printf(" %2d",i);
 			for (int j = 0; j < board[i].length; j++) {
 				if (board[i][j]) {
 					System.out.print(" Q ");
