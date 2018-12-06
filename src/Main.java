@@ -1,10 +1,12 @@
-public class Main {
-	// TODO make it obvious where the user entered their queen
-	// print out all the possible solutions for the NQueenProblem
-	// Improve the display of the chessboard
+import java.util.ArrayList;
 
+public class Main {
+	// TODO
+	// print out all the possible solutions for the NQueenProblem
+
+	static ArrayList<ChessBoard> Boards = new ArrayList<ChessBoard>();
 	// Defines the board size, can be any value lower than 27
-	static final int boardSize = 10;
+	static final int boardSize = 8;
 	// Array of length 2 where userCoord[0] is x coordinate and userCoords[1] is y
 	// coordinate
 	static int[] userCoord = new int[2];
@@ -13,12 +15,12 @@ public class Main {
 	public static void main(String[] args) {
 		if (boardSize <= 27) {
 			// Construct ChessBoard and NQueenProblem
-			ChessBoard board = new ChessBoard(boardSize);
-			NQueenProblem problem = new NQueenProblem(boardSize);
+			ChessBoard UIboard = new ChessBoard(boardSize);
+			//NQueenProblem problem = new NQueenProblem(boardSize);
 
 			// Get user coordinates
-			System.out.printf("***** %d Queen Problem *****%n", board.getBoardWidth());
-			board.display();
+			System.out.printf("***** %d Queen Problem *****%n", boardSize);
+			UIboard.display();
 			// Get coordinate for x-axis
 			System.out.printf("Enter the x coordinate of the first queen: %n");
 			userCoord[0] = getUserInput();
@@ -28,16 +30,23 @@ public class Main {
 
 			// Start timer
 			long startTime = System.currentTimeMillis();
-			board.setPosition(true, userCoord[0], userCoord[1]);
+			UIboard.setPosition(true, userCoord[0], userCoord[1]);
 			System.out.println("This is the position you have chosen");
-			board.display();
-			// If a solution can be found, display the solution
-			if (problem.solveNQueen(board, 0, userCoord[0])) {
+			UIboard.display();
+			if(findAllSolutions(0)) {
+				System.out.println("Solutions found");
+				for(int i = 0;i<Boards.size();i++) {
+					Boards.get(i).display();
+				}
+			}
+			/*// If a solution can be found, display the solution
+			if (findAllSolutions(board, 0, userCoord)) {
 				System.out.println("Solution found");
 				board.display();
 			} else {
 				System.out.println("Unable to find solution");
-			}
+			}*/
+			
 			// End timer
 			long endTime = System.currentTimeMillis();
 			long duration = endTime - startTime;
@@ -64,6 +73,16 @@ public class Main {
 			}
 		}
 		return n;
+	}
+	
+	private static boolean findAllSolutions(int startColumn) {
+		Boards.add(new ChessBoard(boardSize));
+		NQueenProblem problem = new NQueenProblem(boardSize);
+		Boards.get(Boards.size()-1).setPosition(true, userCoord[0], userCoord[1]);
+		if(problem.solveNQueen(Boards.get(Boards.size()-1), startColumn, userCoord[0])) {
+			return true;
+		}
+		return false;
 	}
 
 }

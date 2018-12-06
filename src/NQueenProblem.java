@@ -1,8 +1,11 @@
-
 public class NQueenProblem {
 	public NQueenProblem(int n) {
 
 	}
+	
+	
+	
+	
 	
 	public boolean solveNQueen(ChessBoard n, int col, int userCol) {
 		// If the current column is the column where the user placed a queen
@@ -34,6 +37,43 @@ public class NQueenProblem {
 		return false;
 	}
 	
+	private boolean solveAllNQueen(ChessBoard n, int col, int userCol) {
+		// If the current column is the column where the user entered
+		// a queen, go to the next column
+		
+		if (col == userCol) {
+			col++;
+		}
+		
+		// If all queens have been placed, then problem is solved
+		
+		if (col >= n.getBoardWidth() ) {
+			return true;
+		}
+		
+		// Recursive part of function
+		// For every column
+		for(int i = 0;i<=n.getBoardWidth()-1;i++) {
+			// If its safe to place a queen here
+			if (isQueenSafe(n,col,i)) {
+				// Place the queen here
+				n.setPosition(true, col, i);
+				
+				// Call function for the next column
+				if(solveNQueen(n,col+1,userCol)) {
+					return true;
+				}
+				
+				
+				// Unable to place all queens
+				// Remove a queen and try again
+				
+				n.setPosition(false, col, i);
+			}
+		}
+		
+		return false;
+	}
 	public boolean isQueenSafe(ChessBoard n, int xCoord, int yCoord) {
 		
 		// Checks if another queen is on the same column
