@@ -8,8 +8,7 @@ public class ChessBoard {
 	boolean[][] board;
 
 	/**
-	 * Constructor that creates an n x n board This is done with a 2D array
-	 * 
+	 * Constructor that creates an n x n board. This is done with a 2D array
 	 * @param n
 	 */
 	public ChessBoard(int n) {
@@ -37,7 +36,7 @@ public class ChessBoard {
 
 	/**
 	 * 
-	 * @param        true for a queen, false for no queen
+	 * @param true for a queen, false for blank board space
 	 * @param xCoord
 	 * @param yCoord
 	 * @return true once position has been set

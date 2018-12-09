@@ -1,4 +1,3 @@
-
 public class Main {
 	// Defines the board size, can be any value lower than 27
 	static final int boardSize = 8;
@@ -6,7 +5,6 @@ public class Main {
 	// coordinate
 	static int[] userCoord = new int[2];
 
-	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		if (boardSize <= 27) {
 			// Construct ChessBoard and NQueenProblem
@@ -23,25 +21,16 @@ public class Main {
 			System.out.printf("Enter the y coordinate of the first queen: %n");
 			userCoord[1] = getUserInput();
 
-			// Start timer
-			long startTime = System.currentTimeMillis();
 			UIboard.setPosition(true, userCoord[0], userCoord[1]);
 			System.out.println("This is the position you have chosen");
 			UIboard.display();
+			// Start timer
+			long startTime = System.currentTimeMillis();
 			problem.findAllSolutions(userCoord);
-			//problem.testIsUnique();
-			/*// If a solution can be found, display the solution
-			if (findAllSolutions(board, 0, userCoord)) {
-				System.out.println("Solution found");
-				board.display();
-			} else {
-				System.out.println("Unable to find solution");
-			}*/
-			
 			// End timer
 			long endTime = System.currentTimeMillis();
 			long duration = endTime - startTime;
-			System.out.println("Solution found in " + duration + "m/s");
+			System.out.println("Solutions found in " + duration + "m/s");
 		} else {
 			System.out.println("BoardSize needs to be lower than 28");
 		}
@@ -49,8 +38,7 @@ public class Main {
 
 	/**
 	 * Checks that the number input by the user is valid
-	 * 
-	 * @return n if between
+	 * @return n if between 0 and boardSize - 1
 	 */
 	private static int getUserInput() {
 		int n = BIO.getInt();
@@ -65,7 +53,4 @@ public class Main {
 		}
 		return n;
 	}
-	
-	
-
 }
