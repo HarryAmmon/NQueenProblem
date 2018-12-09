@@ -30,7 +30,7 @@ public class Main {
 			// End timer
 			long endTime = System.currentTimeMillis();
 			long duration = endTime - startTime;
-			System.out.println("Solutions found in " + duration + "m/s");
+			System.out.println("Solutions found in " + duration + "ms");
 		} else {
 			System.out.println("BoardSize needs to be lower than 28");
 		}
