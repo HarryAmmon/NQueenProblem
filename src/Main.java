@@ -1,10 +1,5 @@
-import java.util.ArrayList;
 
 public class Main {
-	// TODO
-	// print out all the possible solutions for the NQueenProblem
-
-	static ArrayList<ChessBoard> Boards = new ArrayList<ChessBoard>();
 	// Defines the board size, can be any value lower than 27
 	static final int boardSize = 8;
 	// Array of length 2 where userCoord[0] is x coordinate and userCoords[1] is y
@@ -16,7 +11,7 @@ public class Main {
 		if (boardSize <= 27) {
 			// Construct ChessBoard and NQueenProblem
 			ChessBoard UIboard = new ChessBoard(boardSize);
-			//NQueenProblem problem = new NQueenProblem(boardSize);
+			NQueenProblem problem = new NQueenProblem(boardSize);
 
 			// Get user coordinates
 			System.out.printf("***** %d Queen Problem *****%n", boardSize);
@@ -33,12 +28,8 @@ public class Main {
 			UIboard.setPosition(true, userCoord[0], userCoord[1]);
 			System.out.println("This is the position you have chosen");
 			UIboard.display();
-			if(findAllSolutions(0)) {
-				System.out.println("Solutions found");
-				for(int i = 0;i<Boards.size();i++) {
-					Boards.get(i).display();
-				}
-			}
+			problem.findAllSolutions(userCoord);
+			//problem.testIsUnique();
 			/*// If a solution can be found, display the solution
 			if (findAllSolutions(board, 0, userCoord)) {
 				System.out.println("Solution found");
@@ -75,14 +66,6 @@ public class Main {
 		return n;
 	}
 	
-	private static boolean findAllSolutions(int startColumn) {
-		Boards.add(new ChessBoard(boardSize));
-		NQueenProblem problem = new NQueenProblem(boardSize);
-		Boards.get(Boards.size()-1).setPosition(true, userCoord[0], userCoord[1]);
-		if(problem.solveNQueen(Boards.get(Boards.size()-1), startColumn, userCoord[0])) {
-			return true;
-		}
-		return false;
-	}
+	
 
 }
