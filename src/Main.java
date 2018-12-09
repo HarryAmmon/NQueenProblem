@@ -1,11 +1,10 @@
-import java.util.ArrayList;
 
 public class Main {
 	// TODO
 	// print out all the possible solutions for the NQueenProblem
 
 	// Defines the board size, can be any value lower than 27
-	static final int boardSize = 8;
+	static final int boardSize = 6;
 	// Array of length 2 where userCoord[0] is x coordinate and userCoords[1] is y
 	// coordinate
 	static int[] userCoord = new int[2];
@@ -32,8 +31,8 @@ public class Main {
 			UIboard.setPosition(true, userCoord[0], userCoord[1]);
 			System.out.println("This is the position you have chosen");
 			UIboard.display();
-			//problem.findAllSolutions(userCoord);
-			problem.testIsUnique();
+			problem.findAllSolutions(userCoord);
+			//problem.testIsUnique();
 			/*// If a solution can be found, display the solution
 			if (findAllSolutions(board, 0, userCoord)) {
 				System.out.println("Solution found");

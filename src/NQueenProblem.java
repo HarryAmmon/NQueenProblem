@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class NQueenProblem {
 	int boardSize;
-	ArrayList<ChessBoard> Boards = new ArrayList<ChessBoard>();
+	ArrayList<ChessBoard> Solutions = new ArrayList<ChessBoard>();
 
 	public NQueenProblem(int n) {
 		boardSize = n;
@@ -58,14 +58,13 @@ public class NQueenProblem {
 			if (isQueenSafe(n, col, i)) {
 				// Place the queen here
 				n.setPosition(true, col, i);
-
+				if (solutionIsUnique(n)) {
 				// Call function for the next column
-				if (solveAllNQueen(n, col + 1, userCol)) {
+					if (solveAllNQueen(n, col + 1, userCol)) {
 					
 						return true;
-					
+						}
 				}
-
 				// Unable to place all queens
 				// Remove a queen and try again
 
@@ -77,24 +76,31 @@ public class NQueenProblem {
 	}
 
 	private boolean solutionIsUnique(ChessBoard n) {
+		// Need to check if all N queens are in the same position
 		ChessBoard toCheck;
+		int samePosition;
 		// If array of boards is empty, must be unique so return true
-		if (Boards.size() == 0) {
+		if (Solutions.size() == 0) {
 			return true;
 		}
 
 		// For every board in Boards
-		for (int i = 0; i <= Boards.size(); i++) {
+		for (int i = 0; i < Solutions.size(); i++) {
+			samePosition = 0;
+			//System.out.printf("%d Boards checked%n", i);
 			// Get that board
-			toCheck = Boards.get(i);
+			toCheck = Solutions.get(i);
 			// Loops that check if there is a queen in the same position
 			// of the two boards
-			for (int j = 0; j <= boardSize-1; j++) {
-				for (int k = 0; k <= boardSize-1; k++) {
+			for (int j = 0; j < boardSize; j++) {
+				for (int k = 0; k < boardSize; k++) {
 					if (toCheck.getPosition(j, k) && n.getPosition(j, k)) {
-						return false;
+						samePosition++;
 					}
 				}
+			}
+			if (samePosition >= n.getBoardWidth()) {
+				return false;
 			}
 		}
 		return true;
@@ -107,42 +113,41 @@ public class NQueenProblem {
 			board0.setPosition(true, i, i);
 		}
 		System.out.println("board0 created:");
-		Boards.add(board0);
+		Solutions.add(board0);
 		board0.display();
 
 		System.out.println("Creating new board");
 		ChessBoard board1 = new ChessBoard(boardSize);
-		for (int i = 0; i < board1.getBoardWidth(); i++) {
-			int j = 2;
-			board1.setPosition(true, i, j);
+		for (int j = 0; j < board1.getBoardWidth(); j++) {
+			board1.setPosition(true, j,7);
 		}
 		System.out.println("board1 created:");
 		board1.display();
 
 		if (solutionIsUnique(board1)) {
-			System.out.println("Boards are unique");
+			System.out.println("UNIQUE");
 		} else {
-			System.out.println("NOT UNIQUE");
+			System.out.println("SAME");
 		}
 
 	}
 
 	public void findAllSolutions(int[] userCoord) {
-		// Create new board
-		ChessBoard board = new ChessBoard(boardSize);
-		// Add users queen to the board
-		board.setPosition(true, userCoord[0], userCoord[1]);
+		ChessBoard board = new ChessBoard(boardSize); // Create new board
+		board.setPosition(true, userCoord[0], userCoord[1]); // Add users queen to the board
+		
 		// Find a solution for it
 		if (solveAllNQueen(board, 0, userCoord[0])) {
 			// If a solution is found, Add to list of Boards,
 			// and display board
 			// NOTETOSELF: Might rename Boards -> solutions
 			board.display();
-			Boards.add(board);
+			//System.out.printf("%d solutions found%n", Solutions.size());
+			Solutions.add(board);
 			// Find next solution
-			//findAllSolutions(userCoord);
+			findAllSolutions(userCoord);
 		} else {
-			System.out.printf("%d solutions found%n", Boards.size());
+			System.out.printf("%d solutions found%n", Solutions.size());
 		}
 
 	}
