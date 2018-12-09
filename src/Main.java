@@ -1,10 +1,7 @@
 
 public class Main {
-	// TODO
-	// print out all the possible solutions for the NQueenProblem
-
 	// Defines the board size, can be any value lower than 27
-	static final int boardSize = 6;
+	static final int boardSize = 8;
 	// Array of length 2 where userCoord[0] is x coordinate and userCoords[1] is y
 	// coordinate
 	static int[] userCoord = new int[2];
